@@ -6,6 +6,7 @@ export default () => {
   const [price, setPrice] = useState()
   const [quantity, setQuantity] = useState()
   const [message, setMessage] = useState()
+  const [discount, setDiscount] = useState(0.0)
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -38,6 +39,7 @@ export default () => {
     axios.post(url, data)
       .then(function (res) {
         setMessage(`Success: ${res.data.message}`)
+        setDiscount(res.data.discount)
       })
       .catch(function (err) {
         setMessage(`Error: ${err.message}`)
@@ -47,6 +49,7 @@ export default () => {
   return (
     <div>
       <div>{ message }</div>
+      <div>Discount: { discount }</div>
       <form onSubmit={e => {handleSubmit(e)}}>
         <input type="text" placeholder="sku" onChange={e => setSku(e.target.value)} />
         <input type="number" step="0.01" placeholder="price" onChange={e => setPrice(e.target.value)} />

@@ -1,8 +1,11 @@
 class OrdersController < ApiController
   def create
-    OrderDiscountJob.perform_now(order_params[:items])
+    # Note: Using perform_now here for testing purposes.
+    order = OrderDiscountJob.perform_now(order_params[:items])
+
     render json: {
       message: 'Job was initiated',
+      discount: order.discount, # This is for testing purposes only.
     }, status: :created
   rescue => err
     render json: {
