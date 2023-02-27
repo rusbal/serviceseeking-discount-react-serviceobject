@@ -9,9 +9,7 @@ RSpec.describe Order, type: :model do
   # Validations
   let(:total) { 10.0 }
   let(:discount) { 2.0 }
-  let(:subject) do
-    Order.new(total: total, discount: discount)
-  end
+  subject { Order.new(total: total, discount: discount) }
 
   it "is valid with valid attributes" do
     expect(subject).to be_valid

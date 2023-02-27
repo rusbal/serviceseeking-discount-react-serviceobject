@@ -13,7 +13,7 @@ RSpec.describe OrderItem, type: :model do
   let(:order) do
     Order.new(total: 123.0, discount: 10.0)
   end
-  let(:subject) do
+  subject do
     order.order_items.new(
       sku: sku,
       price: price,
